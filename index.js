@@ -14,16 +14,21 @@ const parameters = {
   fuel: 5000, // remaining fuel (kg)
   fbr: 0.5, // fuel burn rate (kg/s)
 };
+// P.S. I know putting them in an object isn't strictly needed,
+// but I thought do it a lil different.
 
-const d2 = parameters.d + parameters.vel * parameters.time; //calcultes new distance
-const rf = parameters.fbr * parameters.time; //calculates remaining fuel
+//calcultes new distance
+const d2 = parameters.d + parameters.vel * (parameters.time / 3600);
+//calculates remaining fuel
+const rf = parameters.fbr * parameters.time;
 
 // Pick up an error with how the function below is called and make it robust to such errors
 const calcNewVel = (vel, acc, time) => {
   return vel + acc * time;
 };
 
-const vel2 = calcNewVel(parameters.acc, parameters.vel, parameters.time); //calculates new velocity based on acceleration
+//calculates new velocity based on acceleration
+const vel2 = calcNewVel(parameters.vel, parameters.acc, parameters.time);
 
 console.log(`Corrected New Velocity: ${vel2} km/h`);
 console.log(`Corrected New Distance: ${d2} km`);
