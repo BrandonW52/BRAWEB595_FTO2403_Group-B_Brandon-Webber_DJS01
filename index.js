@@ -20,7 +20,7 @@ const parameters = {
 //calcultes new distance
 const d2 = parameters.d + parameters.vel * (parameters.time / 3600);
 //calculates remaining fuel
-const rf = parameters.fbr * parameters.time;
+const rf = parameters.fuel - parameters.fbr * parameters.time;
 
 // Pick up an error with how the function below is called and make it robust to such errors
 const calcNewVel = (vel, acc, time) => {
