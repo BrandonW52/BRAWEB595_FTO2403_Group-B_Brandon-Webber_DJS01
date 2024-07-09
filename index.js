@@ -24,7 +24,12 @@ const rf = parameters.fuel - parameters.fbr * parameters.time;
 
 // Pick up an error with how the function below is called and make it robust to such errors
 const calcNewVel = (vel, acc, time) => {
-  return vel + acc * time;
+  // Checks if time is above 0 && is a number, throws an error if not either
+  if (time <= 0 || typeof time !== "number") {
+    throw new Error("Time cannot be < 0 or not a number");
+  }
+  // Converts km/h to m/s then converts it back to km/h
+  return (((vel * 1000) / 3600 + acc * time) * 3600) / 1000;
 };
 
 //calculates new velocity based on acceleration
